@@ -100,6 +100,8 @@ router.patch("/assets/:id", auth, FileUploader.single('upload') ,async (req, res
     } catch(e) {
         res.status(400).send(e);
     }
+}, (error, req, res, next) => {
+    res.status(400).send({ error: error.message });
 });
 
 router.delete("/assets/:id", auth, async (req, res) => {
